@@ -1,0 +1,72 @@
+[
+  {
+    "name": "ACE",
+    "pairs": 16,
+    "attempts": 16,
+    "time": "01:45",
+    "score": 1585
+  },
+  {
+    "name": "TOM",
+    "pairs": 16,
+    "attempts": 18,
+    "time": "01:52",
+    "score": 1530
+  },
+  {
+    "name": "SKY",
+    "pairs": 16,
+    "attempts": 20,
+    "time": "02:05",
+    "score": 1465
+  },
+  {
+    "name": "MAX",
+    "pairs": 12,
+    "attempts": 12,
+    "time": "00:58",
+    "score": 1206
+  },
+  {
+    "name": "LEO",
+    "pairs": 12,
+    "attempts": 14,
+    "time": "01:12",
+    "score": 1160
+  },
+  {
+    "name": "ZED",
+    "pairs": 8,
+    "attempts": 8,
+    "time": "00:32",
+    "score": 816
+  },
+  {
+    "name": "SAM",
+    "pairs": 8,
+    "attempts": 9,
+    "time": "00:38",
+    "score": 782
+  },
+  {
+    "name": "JIM",
+    "pairs": 8,
+    "attempts": 10,
+    "time": "00:45",
+    "score": 735
+  },
+  {
+    "name": "KAT",
+    "pairs": 4,
+    "attempts": 4,
+    "time": "00:15",
+    "score": 415
+  },
+  {
+    "name": "BOB",
+    "pairs": 4,
+    "attempts": 5,
+    "time": "00:18",
+    "score": 402
+  }
+]

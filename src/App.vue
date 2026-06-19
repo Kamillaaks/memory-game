@@ -1,3 +1,8 @@
+<script setup lang="ts">
+import PlayingView from './components/PlayingView.vue'
+</script>
+
 <template>
-    <h1>Memory Game</h1>
+    <PlayingView />
+    
 </template>

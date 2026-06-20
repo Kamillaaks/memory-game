@@ -17,6 +17,10 @@ export const useGameStore = defineStore('game', () => {
         startTime: 0,
     })
 
+    const timerInterval = ref<number | undefined>(undefined)
+
+    const currentTime = ref(Date.now())
+
     const currentView = ref('playing')
 
     function createCards(): CardData[] {
@@ -33,18 +37,38 @@ export const useGameStore = defineStore('game', () => {
     }
 
     function startGame(): void {
+        const now = Date.now()
+
         cards.value = createCards()
 
         score.value = {
             attempts: 0,
             matches: 0,
-            startTime: Date.now(),
+            startTime: now,
         }
 
+        currentTime.value = now
         flippedCards.value = []
+
+        startTimer()
+    }
+
+    function startTimer(): void {
+        if (timerInterval.value !== undefined) {
+            clearInterval(timerInterval.value)
+        }
+        
+        timerInterval.value = window.setInterval(() => {
+            currentTime.value = Date.now()
+        }, 1000)
     }
 
     function resetGame(): void {
+        if (timerInterval.value !== undefined) {
+            clearInterval(timerInterval.value)
+            timerInterval.value = undefined
+        }
+
         cards.value = []
 
         score.value = {
@@ -115,7 +139,7 @@ export const useGameStore = defineStore('game', () => {
             return '00:00'
         }
 
-        return formatElapsedTime(score.value.startTime, score.value.endTime)
+        return formatElapsedTime(score.value.startTime, currentTime.value)
     })
 
     const finalScore = computed(() => {

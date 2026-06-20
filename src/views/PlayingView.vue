@@ -8,6 +8,7 @@ const gameStore = useGameStore()
 
 <template>
     <button @click="gameStore.startGame">Start Game</button>
+    <button @click="gameStore.resetGame">Reset</button>
     
     <div class="score-board">
         <ScoreBoard

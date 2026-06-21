@@ -126,6 +126,17 @@ export const useGameStore = defineStore('game', () => {
         }
     }
 
+    async function loadHighScores(): Promise<void> {
+        if (highScores.value.length > 0) {
+            return
+        }
+        
+        const response = await fetch('/highscores.json')
+        const data: HighScoreEntry[] = await response.json()
+
+        highScores.value = data
+    }
+
     function saveHighScore(name: string) {
         const entry: HighScoreEntry = {
             name: name,
@@ -173,6 +184,7 @@ export const useGameStore = defineStore('game', () => {
         resetGame,
         flipCard,
         checkMatch,
+        loadHighScores,
         saveHighScore,
         totalPairs,
         isComplete,

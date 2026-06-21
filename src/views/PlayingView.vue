@@ -4,6 +4,7 @@ import { useGameStore } from '../stores/gameStore.ts'
 import ScoreBoard from '../components/ScoreBoard.vue'
 import WonView from '../views/WonView.vue'
 import { useRouter } from 'vue-router'
+import { onMounted } from 'vue'
 
 const gameStore = useGameStore()
 
@@ -13,6 +14,10 @@ function handleSaveScore(name: string) {
     gameStore.saveHighScore(name)
     router.push('/highscores')
 }
+
+onMounted(() => {
+    gameStore.loadHighScores()
+})
 
 </script>
 

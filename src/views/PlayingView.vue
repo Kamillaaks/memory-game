@@ -3,8 +3,16 @@ import Card from '../components/Card.vue'
 import { useGameStore } from '../stores/gameStore.ts'
 import ScoreBoard from '../components/ScoreBoard.vue'
 import WonView from '../views/WonView.vue'
+import { useRouter } from 'vue-router'
 
 const gameStore = useGameStore()
+
+const router = useRouter()
+
+function handleSaveScore(name: string) {
+    gameStore.saveHighScore(name)
+    router.push('/highscores')
+}
 
 </script>
 
@@ -15,7 +23,7 @@ const gameStore = useGameStore()
         :elapsed="gameStore.elapsedTimeFormatted"
         :finalScore="gameStore.finalScore"
         @play-again="gameStore.startGame"
-        @save-score="gameStore.startGame"
+        @save-score="handleSaveScore"
     />
 
     <div v-else>

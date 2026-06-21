@@ -1,17 +1,13 @@
 <script setup lang="ts">
-import type { HighScoreEntry  } from '../types';
+import { useRouter } from 'vue-router'
+import { useGameStore } from '../stores/gameStore';
 import { padZero } from '../utils/string';
 
-defineProps<{
-    highScores: HighScoreEntry[]
-}>()
-
-const emit = defineEmits<{
-    goHome: []
-}>()
+const gameStore = useGameStore()
+const router = useRouter()
 
 function goHome(): void {
-    emit('goHome')
+    router.push('/')
 }
 </script>
 
@@ -28,7 +24,7 @@ function goHome(): void {
             </button>
         </div>
 
-        <div class="scores-list" v-if="highScores.length === 0">
+        <div class="scores-list" v-if="gameStore.highScores.length === 0">
             <div class="empty-state">
                 <p class="empty-state-text">
                     No scores yet. Play a game to set the first record.
@@ -39,7 +35,7 @@ function goHome(): void {
         <div class="scores-list" v-else>
             <div 
                 class="score-row"
-                v-for="(entry, index) in highScores"
+                v-for="(entry, index) in gameStore.highScores"
                 :key="entry.name + entry.score"
             >
                 <div class="rank-cell">

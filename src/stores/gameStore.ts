@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
-import type { CardData, CardSymbol, GameScore } from '../types'
-import { shuffle } from '../utils/array'
+import type { HighScoreEntry, CardData, CardSymbol, GameScore } from '../types'
+import { shuffle, sortByDescending } from '../utils/array'
 import { calculateFinalScore, calculateProgress } from '../utils/score'
 import { formatElapsedTime } from '../utils/time'
 
@@ -17,11 +17,11 @@ export const useGameStore = defineStore('game', () => {
         startTime: 0,
     })
 
+    const highScores = ref<HighScoreEntry[]>([])
+
     const timerInterval = ref<number | undefined>(undefined)
 
     const currentTime = ref(Date.now())
-
-    const currentView = ref('playing')
 
     function createCards(): CardData[] {
         const symbols = CARD_SYMBOLS.slice(0, 8)
@@ -110,7 +110,6 @@ export const useGameStore = defineStore('game', () => {
 
                 if (score.value.matches === cards.value.length / 2) {
                     score.value.endTime = Date.now()
-                    currentView.value = 'won'
                 }
             }, 500)
         } else {
@@ -122,12 +121,26 @@ export const useGameStore = defineStore('game', () => {
         }
     }
 
+    function saveHighScore(name: string) {
+        const entry: HighScoreEntry = {
+            name: name,
+            pairs: totalPairs.value,
+            attempts: score.value.attempts,
+            time: elapsedTimeFormatted.value,
+            score: finalScore.value,
+            date: Date.now(),
+        }
+
+        highScores.value.push(entry)
+        highScores.value = sortByDescending(highScores.value)
+    }
+
     const totalPairs = computed(() => {
         return cards.value.length / 2
     })
 
     const isComplete = computed(() => {
-        return score.value.matches === cards.value.length / 2
+        return score.value.matches === cards.value.length / 2 && cards.value.length > 0
     })
 
     const progress = computed(() => {
@@ -150,11 +163,12 @@ export const useGameStore = defineStore('game', () => {
         cards,
         flippedCards,
         score,
-        currentView,
+        highScores,
         startGame,
         resetGame,
         flipCard,
         checkMatch,
+        saveHighScore,
         totalPairs,
         isComplete,
         progress,

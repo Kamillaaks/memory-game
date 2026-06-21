@@ -110,6 +110,11 @@ export const useGameStore = defineStore('game', () => {
 
                 if (score.value.matches === cards.value.length / 2) {
                     score.value.endTime = Date.now()
+
+                    if (timerInterval.value !== undefined) {
+                        clearInterval(timerInterval.value)
+                        timerInterval.value = undefined
+                    }
                 }
             }, 500)
         } else {

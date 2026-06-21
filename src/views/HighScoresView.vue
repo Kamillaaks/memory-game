@@ -2,9 +2,14 @@
 import { useRouter } from 'vue-router'
 import { useGameStore } from '../stores/gameStore';
 import { padZero } from '../utils/string';
+import { onMounted } from 'vue';
 
 const gameStore = useGameStore()
 const router = useRouter()
+
+onMounted(() => {
+    gameStore.loadHighScores()
+})
 
 function goHome(): void {
     router.push('/')

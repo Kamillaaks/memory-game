@@ -130,7 +130,7 @@ export const useGameStore = defineStore('game', () => {
         if (highScores.value.length > 0) {
             return
         }
-        
+
         const response = await fetch('/highscores.json')
         const data: HighScoreEntry[] = await response.json()
 

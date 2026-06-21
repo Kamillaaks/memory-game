@@ -80,3 +80,142 @@ function playAgain(): void {
         </div>
     </div>
 </template>
+
+<style scoped>
+.won-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: var(--space-lg);
+    color: var(--text-primary);
+    text-align: center;
+}
+
+.won-title {
+    font-size: 36px;
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    letter-spacing: -0.02em;
+}
+
+.score-display {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: var(--space-xl);
+    color: var(--accent);
+}
+
+.stats {
+    margin: var(--space-xl) 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md);
+    width: 100%;
+    max-width: 320px;
+}
+
+.stat-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: var(--space-xs);
+}
+
+.stat-label {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.attempts-value {
+    color: var(--error);
+}
+
+.time-value {
+    color: var(--warning);
+}
+
+.initials-section {
+    margin: var(--space-xl) 0;
+}
+
+.initials-label {
+    font-size: 14px;
+    margin-bottom: var(--space-sm);
+    color: var(--text-muted);
+}
+
+.initials-input {
+    font-size: 28px;
+    font-weight: 600;
+    width: 120px;
+    text-align: center;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    font-family: var(--font-mono);
+}
+
+.initials-input:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+.button-group {
+    display: flex;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+}
+
+.btn {
+    padding: 14px 36px;
+    font-size: 16px;
+    font-weight: 500;
+    font-family: inherit;
+    border: 1px solid var(--border-medium);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    background: var(--bg-surface-raised);
+    color: var(--text-secondary);
+}
+
+.btn:hover {
+    background: var(--bg-surface-elevated);
+    color: var(--text-primary);
+}
+
+.btn-primary {
+    background: var(--accent);
+    color: var(--text-inverse);
+    border-color: transparent;
+}
+
+.btn-primary:hover {
+    background: var(--accent-hover);
+}
+
+.btn-error {
+    background: var(--error-subtle);
+    color: var(--error);
+    border-color: var(--error);
+}
+
+.btn-error:hover {
+    background: var(--error);
+    color: var(--text-inverse);
+}
+</style>

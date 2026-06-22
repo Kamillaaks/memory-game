@@ -59,7 +59,7 @@ function playAgain(): void {
                 placeholder="ABC"
                 v-model="initials"
                 @input="updateInitials"
-                />
+            />
         </div>
 
         <div class="button-group">
@@ -67,14 +67,14 @@ function playAgain(): void {
                 class="btn btn-primary" 
                 id="save-btn"
                 @click="saveScore"
-                >
+            >
                 Save Score
             </button>
             <button 
                 class="btn btn-error" 
                 id="play-again-btn"
                 @click="playAgain"
-                >
+            >
                 Play Again
             </button>
         </div>

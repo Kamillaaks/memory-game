@@ -37,29 +37,59 @@ onMounted(() => {
                 <h1 class="game-title">Memory</h1>
 
                 <div class="button-group">
-                    <button class="btn btn-primary" @click="gameStore.startGame">
+
+                    <button 
+                        v-if="gameStore.cards.length > 0"
+                        class="btn btn-warning" 
+                        @click="gameStore.resetGame"
+                    >
+                        Reset
+                    </button>
+
+                    <button 
+                        v-else
+                        class="btn btn-primary" 
+                        @click="gameStore.startGame"
+                        >
                         Start Game
                     </button>
 
-                    <button class="btn btn-warning" @click="gameStore.resetGame">
-                        Reset
+                    <button
+                        class="btn"
+                        @click="router.push('/highscores')"
+                    >
+                        High Scores
                     </button>
+
+                   
                 </div>
             </div>
-
-            <ScoreBoard
+            <div v-if="gameStore.cards.length > 0">
+                <ScoreBoard
                 :score="gameStore.score"
                 :elapsed="gameStore.elapsedTimeFormatted"
                 :progress="gameStore.progress"
             />
 
-            <div class="card-grid">
-                <Card
-                    v-for="card in gameStore.cards"
-                    :key="card.id"
-                    :card="card"
-                    @card-clicked="gameStore.flipCard"
-                />
+                <div class="card-grid">
+                    <Card
+                        v-for="card in gameStore.cards"
+                        :key="card.id"
+                        :card="card"
+                        @card-clicked="gameStore.flipCard"
+                    />
+                </div>
+            </div>
+            
+            <div v-else class="empty-state">
+                <h2>Memory</h2>
+                <p>Click Start Game to begin</p>
+                <button 
+                    class="btn btn-primary start-large-btn"
+                    @click="gameStore.startGame"
+                >
+                    Start Game
+                </button>
             </div>
         </div>
     </div>
@@ -163,26 +193,16 @@ onMounted(() => {
     font-size: 15px;
 }
 
-.progress-bar {
-    width: 100%;
-    height: 3px;
-    background: var(--bg-surface-elevated);
-    border-radius: var(--radius-sm);
-    margin-top: var(--space-sm);
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--accent);
-    transition: width 0.3s ease;
-}
-
 .card-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: var(--space-md);
     justify-items: center;
+}
+
+.start-large-btn {
+    padding: 16px 40px;
+    font-size: 16px;
 }
 
 @media (max-width: 500px) {

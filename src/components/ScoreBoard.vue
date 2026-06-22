@@ -18,7 +18,7 @@ defineProps<{
         </div>
 
         <div class="stat matches">
-            <span class="stat-value">{{ score.matches }}</span>
+            <span class="stat-value">{{ score.matches }}/8</span>
             <span class="stat-label">Matches</span>
         </div>
 
@@ -26,14 +26,14 @@ defineProps<{
             <span class="stat-value">{{ elapsed }}</span>
             <span class="stat-label">Time</span>
         </div>
-
-        <div class="progress-bar">
-            <div class="progress-fill" 
-            :style="{ width: `${progress}%` }"
-            ></div>
-        </div>
     </div>
-    
+
+    <div class="progress-bar">
+        <div 
+            class="progress-fill" 
+            :style="{ width: `${progress}%` }"
+        ></div>
+    </div>
 </template>
 
 <style scoped>

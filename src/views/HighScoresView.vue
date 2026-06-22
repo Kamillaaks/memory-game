@@ -14,6 +14,13 @@ onMounted(() => {
 function goHome(): void {
     router.push('/')
 }
+
+function getRankClass(index: number): string {
+    if (index === 0) return 'rank-gold'
+    if (index === 1) return 'rank-silver'
+    if (index === 2) return 'rank-bronze'
+    return 'rank-default'
+}
 </script>
 
 <template>
@@ -40,11 +47,15 @@ function goHome(): void {
         <div class="scores-list" v-else>
             <div 
                 class="score-row"
+                :class="{highlight: index < 3}"
                 v-for="(entry, index) in gameStore.highScores"
                 :key="entry.name + entry.score"
             >
                 <div class="rank-cell">
-                    <span class="rank-badge">
+                    <span 
+                        class="rank-badge"
+                        :class="getRankClass(index)"
+                    >
                         {{ padZero(index + 1) }}
                     </span>
                 </div>
@@ -115,7 +126,7 @@ function goHome(): void {
 
 .score-row {
     display: grid;
-    grid-template-columns: 48px 1fr 80px 80px 80px;
+    grid-template-columns: 48px 1fr 80px 80px;
     gap: var(--space-md);
     padding: var(--space-md) var(--space-lg);
     border-bottom: 1px solid var(--border-subtle);
